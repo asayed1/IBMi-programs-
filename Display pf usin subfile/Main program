@@ -1,0 +1,78 @@
+*************** Beginning of data *****************************************
+0001.00 H                                                                          
+0002.00 FStudpf1   IF A E           K DISK                                         
+0003.00 fstud001d  CF   E             WORKSTN INFDS(DSPFBK)                        
+0004.00 F                                     SFILE(SFLDATA:RRN#)                  
+0005.00 D RRN#            S              4S 0                                      
+0006.00 D                                                                          
+0007.00 D DSPFBK          DS                                                       
+0008.00 D  SF_RRN               376    377I 0                                      
+0009.00 D  MIN_RRN              378    379I 0                                      
+0010.00 D  NUM_RCDS             380    381I 0                                      
+0011.00 D                                                                          
+0012.00  /FREE                                                                     
+0013.00     RcdNbr = 1  ;                                                          
+0014.00     Exsr  $ClearSr;                                                        
+0015.00     Exsr  $LoadSr;                                                         
+0016.00     write footer ;                                                         
+0017.00    Dow *In03 = *off;                                                       
+0018.00      Exfmt SFLCTL;                                                         
+0019.00     If InpRRN > 0 ;                                                        
+0020.00      RcdNbr = InpRRN ;                                                   
+0021.00     Else;                                                                
+0022.00       RcdNbr = MIN_RRN;                                                  
+0023.00     EndIf;                                                               
+0024.00     If *In06 = *on;                                                      
+0025.00       SID = 0;                                                           
+0026.00       SName = *Blanks;                                                   
+0027.00       SDept = *Blanks;                                                   
+0028.00       SGrade= *Blanks;                                                   
+0029.00      DoW *In12 = *off;                                                   
+0030.00        Exfmt Addrec;                                                     
+0031.00        ExSr $Addrec;                                                     
+0032.00      EndDo;                                                              
+0033.00        *In12 = *off ;                                                    
+0034.00     EndIf;                                                               
+0035.00    EndDo;                                                                
+0036.00                                                                          
+0037.00     *InLr = *On;                                                         
+0038.00  /END-FREE                                                               
+0039.00  /Free                                                                   
+0040.00     BegSr $Addrec;                                                       
+0041.00         If SID = 0;                                                      
+0042.00           Werrmsg = 'Stud No Cant be Zero';                              
+0043.00         ElseIf SName = *Blanks;                                          
+0044.00           Werrmsg = 'Stud Name cant be blanks';                          
+0045.00         ElseIf SDept = *Blanks or SGrade = *Blanks ;                     
+0046.00           Werrmsg = 'Dept or Grade cant be balnks';                      
+0047.00         Else;                                                            
+0048.00            Write StudFmt;                                                
+0049.00           Werrmsg = 'Record Added Successfully ..!';                     
+0050.00           SID = 0;                                                       
+0051.00           SName = *Blanks;                                               
+0052.00           SDept = *Blanks;                                               
+0053.00           SGrade= *Blanks;                                               
+0054.00         EndIf;                                                           
+0055.00    EndSr;                                                                
+0056.00  /End-free                                                               
+0057.00  /FREE                                                                   
+0058.00      BegSr $ClearSr;                                                     
+0059.00      *In50 = *off;                                                         
+0060.00      Write SFLCTL;                                                         
+0061.00      *In50 = *on;                                                          
+0062.00      RRN# = 0;                                                             
+0063.00      EndSr;                                                                
+0064.00  /END-FREE                                                                 
+0065.00                                                                            
+0066.00  /FREE                                                                     
+0067.00      BegSr $LoadSr;                                                        
+0068.00       Setll *loval StudPF1;                                                
+0069.00       read Studpf1;                                                        
+0070.00       DoW Not %Eof(Studpf1);                                               
+0071.00          RRN# = RRN# +1 ;                                                  
+0072.00          Write SFLDATA;                                                    
+0073.00          reaD STUDPF1;                                                     
+0074.00       Enddo;                                                               
+0075.00      EndSr;                                                                
+0076.00  /END-FREE                                                                 
+        ****************** End of data ********************************************
