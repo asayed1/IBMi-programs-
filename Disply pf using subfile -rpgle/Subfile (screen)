@@ -1,0 +1,62 @@
+*************** Beginning of data ***********************************************
+0000.10      A*%%TS  SD  20210818  222056  M708AHMED   REL-V7R3M0  5770-WDS              
+0000.20      A*%%EC                                                                      
+0000.30      A                                      DSPSIZ(24 80 *DS3)                   
+0000.40      A          R SFLDATA                   SFL                                  
+0000.50      A*%%TS  SD  20210818  221228  M708AHMED   REL-V7R3M0  5770-WDS              
+0000.60      A            SID       R        O  9  2REFFLD(STUDFMT/SID ASAYED/STUDPF1)   
+0000.70      A            SNAME     R        O  9  9REFFLD(STUDFMT/SNAME ASAYED/STUDPF1) 
+0000.80      A            SDEPT     R        O  9 33REFFLD(STUDFMT/SDEPT ASAYED/STUDPF1) 
+0000.90      A            SGRADE    R        O  9 42REFFLD(STUDFMT/SGRADE ASAYED/STUDPF- 
+0001.00      A                                      1)                                   
+0001.10      A          R SFLCTL                    SFLCTL(SFLDATA)                      
+0001.20      A*%%TS  SD  20210818  222056  M708AHMED   REL-V7R3M0  5770-WDS              
+0001.30      A                                      SFLSIZ(0100)                         
+0001.40      A                                      SFLPAG(0010)                         
+0001.50      A                                      CA03(03 'exit')                      
+0001.60      A                                      CA06(06 'Add')                       
+0001.70      A                                      OVERLAY                              
+0001.80      A  50                                  SFLDSP                               
+0001.90      A  50                                  SFLDSPCTL                            
+0002.00      A N50                                  SFLCLR                               
+0002.10      A  50                                  SFLEND(*MORE)                        
+0002.20      A            RCDNBR         4S 0H      SFLRCDNBR(CURSOR)                    
+0002.30      A                                  3  7DATE                                 
+0002.40      A                                      EDTCDE(Y)                            
+0002.50      A                                  3 54TIME                                 
+0002.60      A                                  3 24'Welcome to Subfile'                 
+0002.70      A                                      COLOR(BLU)                           
+0002.80      A                                      DSPATR(HI)                           
+0002.90      A                                      DSPATR(UL)                           
+0003.00      A                                  5 21'Listing down all records of studpf- 
+0003.10      A                                      1'                                   
+0003.20      A                                  8  2'StudNo      Stud Name           De- 
+0003.30      A                                      pt   Grade'                          
+0003.40      A                                      COLOR(WHT)                           
+0003.50      A                                      DSPATR(BL)                           
+0003.60      A                                  6  6'Position to RRN#:'                  
+0003.70      A            INPRRN         5  0I  6 25                                     
+0003.80      A          R FOOTER                                                         
+0003.90      A*%%TS  SD  20210818  213028  M708AHMED   REL-V7R3M0  5770-WDS              
+0004.00      A                                 22 15'F3 = Exit'                           
+0004.10      A                                 22 36'F6 = Add'                            
+0004.20      A          R ADDREC                                                          
+0004.30      A*%%TS  SD  20210818  221152  M708AHMED   REL-V7R3M0  5770-WDS               
+0004.40      A                                      CA12(12 'Cancel')                     
+0004.50      A                                      WINDOW(4 15 13 40)                    
+0004.60      A                                      WDWBORDER((*COLOR BLU) (*CHAR '.-.|-  
+0004.70      A                                      |:-:'))                               
+0004.80      A                                  2  9'Add New Stud Record'                 
+0004.90      A                                      DSPATR(UL)                            
+0005.00      A                                      COLOR(WHT)                            
+0005.10      A                                  4  2'Stud No:'                            
+0005.20      A                                  6  2'Stud Name:'                          
+0005.30      A                                  8  2'Stud Dept:'                          
+0005.40      A                                 10  2'Stud Grade:'                         
+0005.50      A            WERRMSG       25A  O 12  2                                      
+0005.60      A            SID       R        B  4 14REFFLD(STUDFMT/SID ASAYED/STUDPF1)    
+0005.70      A            SNAME     R        B  6 14REFFLD(STUDFMT/SNAME ASAYED/STUDPF1)  
+0005.80      A            SDEPT     R        B  8 14REFFLD(STUDFMT/SDEPT ASAYED/STUDPF1)  
+0005.90      A            SGRADE    R        B 10 14REFFLD(STUDFMT/SGRADE ASAYED/STUDPF-  
+0006.00      A                                      1)                                  
+        ****************** End of data *************************************************
